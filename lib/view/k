@@ -1,0 +1,183 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_swipable/flutter_swipable.dart';
+import 'package:techbreaks/widgets/cards_column.dart';
+import 'package:techbreaks/widgets/newscard.dart';
+
+class FeedScreen extends StatefulWidget {
+  const FeedScreen({Key? key}) : super(key: key);
+
+  @override
+  _FeedScreenState createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
+
+
+  List<Widget> a=[
+    NewsCard(
+      description: "Description",
+      imgPath: "images/1.jpg",
+      credits: "JJ Thompson",
+      onSharePress: (){},
+      onCardPress: (){},
+    ),
+    NewsCard(
+      description: "Description",
+      imgPath: "images/2.jpg",
+      credits: "Ben Cutting ",
+      onSharePress: (){},
+      onCardPress: (){},
+    ),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    var size=MediaQuery.of(context).size;
+    return Scaffold(
+      body: Container(
+        width: size.width,
+        height: size.height,
+        decoration: const BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
+         ),
+      child:  SingleChildScrollView(
+        child: Column(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 60),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            decoration: const BoxDecoration(
+                                color: Colors.black,
+                                shape: BoxShape.circle
+                            ),
+                            child: IconButton(
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.home_outlined,color: Colors.white,))),
+                        Image(
+                          image: const AssetImage("images/logo.png"),
+                          width: size.width * 0.4,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    color: Colors.transparent,
+                    width: size.width,
+                    height: size.height*0.35,
+                    child: Stack(
+                      children: [
+                        Swipable(
+                          child: Column(
+                            children: [
+                              NewsCard(
+                              description: "News1",
+                              imgPath: "images/1.jpg",
+                              credits: "JJ Thompson",
+                              onSharePress: (){},
+                              onCardPress: (){},
+                      ),
+                              NewsCard(
+                                description: "231",
+                                imgPath: "images/2.jpg",
+                                credits: "Ben Cutting ",
+                                onSharePress: (){},
+                                onCardPress: (){},
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
+                    )
+                    // PageView.builder(
+                    //   itemCount: a.length,
+                    //   scrollDirection: Axis.vertical,
+                    //   itemBuilder: (BuildContext context, int itemIndex) {
+                    //   return CardsColumn(index: itemIndex);
+                    // },),
+                  ),
+                    // Container(
+                    //     color: Colors.transparent,
+                    //     width: size.width,
+                    //     height: size.height*0.35,
+                    //     child: Stack(
+                    //         children: [
+                    //           Swipable(
+                    //             child: NewsCard(
+                    //               description: "News1",
+                    //               imgPath: "images/1.jpg",
+                    //               credits: "JJ Thompson",
+                    //               onSharePress: (){},
+                    //               onCardPress: (){},
+                    //             ),
+                    //           ),
+                    //           Swipable(
+                    //             child: NewsCard(
+                    //               description: "231",
+                    //               imgPath: "images/2.jpg",
+                    //               credits: "Ben Cutting ",
+                    //               onSharePress: (){},
+                    //               onCardPress: (){},
+                    //             ),
+                    //           ),
+                    //         ]
+                    //     )
+                    //   // PageView.builder(
+                    //   //   itemCount: a.length,
+                    //   //   scrollDirection: Axis.vertical,
+                    //   //   itemBuilder: (BuildContext context, int itemIndex) {
+                    //   //   return CardsColumn(index: itemIndex);
+                    //   // },),
+                    // ),
+                ],),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    SizedBox(height: 40,),
+                    Text("Privacy Policy | Terms and Conditions",style: TextStyle(color: Colors.red,fontSize: 10),),
+                    Text("Copyright©2020 All rights are reserved",style: TextStyle(fontSize: 10)),
+                  ],),
+              ],
+            ),
+
+          ],
+        ),
+      ),
+      ),
+    );
+  }
+}
+
+// Widget CardsColumn(BuildContext context, int index){
+//   String text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.";
+//   return Column(
+//     children: [
+//       NewsCard(
+//           description: text,
+//           imgPath: "images/1.jpg",
+//           credits: "JJ Thompson",
+//           onSharePress: (){},
+//           onCardPress: (){},
+//       ),
+//
+//       NewsCard(
+//         description: text,
+//         imgPath: "images/2.jpg",
+//         credits: "Ben Cutting ",
+//         onSharePress: (){},
+//         onCardPress: (){},
+//       ),
+//     ],
+//   );
+// }
